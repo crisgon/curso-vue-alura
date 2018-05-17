@@ -8,6 +8,7 @@
       <li class="list-item" v-for="foto in filterPhotos">
         <painel :titulo="foto.titulo">
           <image-responsiva :url="foto.url" :titulo="foto.titulo"/>
+          <botao tipo="botao" rotulo="Apagar" @botaoAtivado="remove(foto)"/>
         </painel>
       </li>
     </ul>
@@ -18,10 +19,13 @@
 <script>
 import Painel from '../shared/Painel/Painel.vue';
 import ImagemResponsiva from '../shared/Image-responsiva/ImagemResponsiva.vue';
+import Botao from '../shared/Botao/Botao.vue';
+
 export default {
   components: {
     'painel': Painel,
-    'image-responsiva': ImagemResponsiva
+    'image-responsiva': ImagemResponsiva,
+    'botao': Botao
   },
 
   data () {
@@ -29,6 +33,11 @@ export default {
       siteTitle: 'Alura Photos',
       fotos: [],
       filter: ''
+    }
+  },
+  methods: {
+    remove(foto) {
+        alert('Removendo ' + foto.titulo);
     }
   },
 
